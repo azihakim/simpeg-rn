@@ -2,101 +2,114 @@
 <html lang="en">
 
 <head>
-	<!-- Required meta tags -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<title>SIMPEG</title>
-	<!-- plugins:css -->
-	<link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../../assets/vendors/ti-icons/css/themify-icons.css">
-	<link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
-	<link rel="stylesheet" href="../../assets/vendors/font-awesome/css/font-awesome.min.css">
-	<!-- endinject -->
-	<!-- Plugin css for this page -->
-	<!-- End plugin css for this page -->
-	<!-- inject:css -->
-	<!-- endinject -->
-	<!-- Layout styles -->
-	<link rel="stylesheet" href="../../assets/css/style.css">
-	<!-- End layout styles -->
-	<link rel="shortcut icon" href="../../assets/images/favicon.png" />
+
+	<link href="{{ asset('vendors/resource/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="{{ asset('vendors/resource/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="{{ asset('vendors/resource/nprogress/nprogress.css') }}" rel="stylesheet">
+	<!-- iCheck -->
+	<link href="{{ asset('vendors/resource/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+
+	<!-- bootstrap-progressbar -->
+	<link href="{{ asset('vendors/resource/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}"
+		rel="stylesheet">
+	<!-- JQVMap -->
+	<link href="{{ asset('vendors/resource/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet" />
+	<!-- bootstrap-daterangepicker -->
+	<link href="{{ asset('vendors/resource/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+
+	<!-- Custom Theme Style -->
+	<link href="{{ asset('vendors/build/css/custom.min.css') }}" rel="stylesheet">
+
+	<!-- Datatables -->
+
+	<link href="{{ asset('vendors/resource/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('vendors/resource/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('vendors/resource/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}"
+		rel="stylesheet">
+	<link href="{{ asset('vendors/resource/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}"
+		rel="stylesheet">
+	<link href="{{ asset('vendors/resource/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}"
+		rel="stylesheet">
 </head>
 
-<body>
-	<div class="container-scroller">
-		<div class="container-fluid page-body-wrapper full-page-wrapper">
-			<div class="content-wrapper d-flex align-items-center auth">
-				<div class="row flex-grow">
-					<div class="col-lg-4 mx-auto">
-						@if (session('error'))
-							<div class="alert alert-danger">
-								Username Sudah Pernah Ada, Silahkan Gunakan Username Lain!!!
-							</div>
-						@endif
-						<div class="auth-form-light text-left p-5">
-							{{-- <div class="brand-logo">
-								<img src="../../assets/images/logo.svg">
-							</div> --}}
-							<h4>SIMPEG</h4>
-							<h6 class="fw-light">Registrasi Calon Karyawan</h6>
-							<form class="pt-3" method="POST" action="{{ route('registrasi.store') }}" action="POST">
-								@csrf
-								<div class="form-group">
-									<input type="text" name="nama" class="form-control form-control-lg" id="exampleInputEmail1"
-										placeholder="Nama" required>
-								</div>
-								<div class="form-group">
-									<input type="number" name="umur" class="form-control form-control-lg" id="exampleInputEmail1"
-										placeholder="Umur" required>
-								</div>
-								<div class="form-group">
-									<select name="jenis_kelamin" class="form-control form-control-lg" id="exampleInputEmail1" required>
-										<option value="" disabled selected>Jenis Kelamin</option>
-										<option value="Laki-laki">Laki-laki</option>
-										<option value="Perempuan">Perempuan</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<input type="text" name="telepon" class="form-control form-control-lg" id="exampleInputEmail1"
-										placeholder="Telepon" required>
-								</div>
-								<div class="form-group">
-									<input type="text" name="alamat" class="form-control form-control-lg" id="exampleInputEmail1"
-										placeholder="Alamat" required>
-								</div>
-								<div class="form-group">
-									<input type="text" name="username" class="form-control form-control-lg" id="exampleInputEmail1"
-										placeholder="Username" required>
-								</div>
-								<div class="form-group">
-									<input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" required
-										placeholder="Password">
-								</div>
-								<div class="mt-3 d-grid gap-2">
-									<button class="btn btn-block btn-primary btn-lg fw-semibold auth-form-btn">Daftar</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
+<body class="login">
+	<div>
+		<a class="hiddenanchor" id="signup"></a>
+		<a class="hiddenanchor" id="signin"></a>
+
+		@if (session('success'))
+			<div class="alert alert-success">
+				{{ session('success') }}
 			</div>
-			<!-- content-wrapper ends -->
+		@endif
+
+		@if (session('error'))
+			<div class="alert alert-danger">
+				{{ session('error') }}
+			</div>
+		@endif
+
+		@if (session('any'))
+			<div class="alert alert-info">
+				{{ session('any') }}
+			</div>
+		@endif
+		<div class="login_wrapper">
+			<div class="animate form login_form">
+				<section class="login_content">
+					<form action="{{ route('registrasi.store') }}" method="post">
+						@csrf
+						<div class="text-center">
+							{{-- <img src="{{ asset('vendors/build/images/logof.png') }}" style="width: 150px"> --}}
+						</div>
+						<h1><strong>Registrasi Form</strong></h1>
+						<div>
+							<input name="nama" type="text" class="form-control" placeholder="Nama" required="" />
+						</div>
+						<div class="mb-3">
+							<input name="umur" type="number" class="form-control" placeholder="Umur" required="" />
+						</div>
+						<div class="form-group mb-3">
+							<select class="form-control" name="jenis_kelamin">
+								<option selected disabled>Jenis Kelamin</option>
+								<option value="Laki-laki">Laki-laki</option>
+								<option value="Perempuan">Perempuan</option>
+							</select>
+						</div>
+						<div>
+							<input name="no_telp" type="text" class="form-control" placeholder="Nomor HP" required="" />
+						</div>
+						<div>
+							<input name="alamat" type="text" class="form-control" placeholder="Alamat" required="" />
+						</div>
+						<div>
+							<input name="username" type="text" class="form-control" placeholder="username" required="" />
+						</div>
+						<div>
+							<input type="password" class="form-control" placeholder="Password" required="" name="password" />
+						</div>
+						<div>
+							<button type="submit" class="btn btn-info btn-block"><strong>Daftar</strong></button>
+						</div>
+
+						<div class="clearfix"></div>
+
+						<div class="separator">
+						</div>
+					</form>
+				</section>
+			</div>
 		</div>
-		<!-- page-body-wrapper ends -->
 	</div>
-	<!-- container-scroller -->
-	<!-- plugins:js -->
-	<script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-	<!-- endinject -->
-	<!-- Plugin js for this page -->
-	<!-- End plugin js for this page -->
-	<!-- inject:js -->
-	<script src="../../assets/js/off-canvas.js"></script>
-	<script src="../../assets/js/misc.js"></script>
-	<script src="../../assets/js/settings.js"></script>
-	<script src="../../assets/js/todolist.js"></script>
-	<script src="../../assets/js/hoverable-collapse.js"></script>
-	<!-- endinject -->
 </body>
 
 </html>

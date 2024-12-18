@@ -12,11 +12,12 @@ class RekrutmenController extends Controller
 {
     public function lowonganIndex()
     {
-        if (auth()->user()->jabatan == 'Pelamar') {
-            $lowongan = Lowongan::where('status', 'Aktif')->get();
-        } else {
-            $lowongan = Lowongan::all();
-        }
+        // if (auth()->user()->role == 'Pelamar') {
+        //     $lowongan = Lowongan::where('status', 'Aktif')->get();
+        // } else {
+        //     $lowongan = Lowongan::all();
+        // }
+        $lowongan = Lowongan::all();
         return view('rekrutmen.lowongan.index', compact('lowongan'));
     }
 
@@ -29,7 +30,7 @@ class RekrutmenController extends Controller
     public function lowonganStore(Request $request)
     {
         $request->validate([
-            'jabatan' => 'required',
+            'jabatan_id' => 'required',
             'deskripsi' => 'required',
         ]);
 
@@ -52,7 +53,7 @@ class RekrutmenController extends Controller
     public function lowonganUpdate(Request $request, $id)
     {
         $request->validate([
-            'jabatan' => 'required',
+            'jabatan_id' => 'required',
             'status' => 'required',
             'deskripsi' => 'required',
         ]);

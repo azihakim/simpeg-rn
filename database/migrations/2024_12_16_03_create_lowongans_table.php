@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('lowongans', function (Blueprint $table) {
             $table->id();
             // $table->string('jabatan');
-            $table->unsignedBigInteger('jabatan');
-            $table->foreign('jabatan')->references('id')->on('jabatans');
-            $table->string('status')->default('aktif');
+            $table->unsignedBigInteger('jabatan_id');
+            $table->foreign('jabatan_id')->references('id')->on('jabatans');
+            $table->enum('status', ['Aktif', 'Non Aktif'])->default('Aktif');
             $table->text('deskripsi');
             $table->timestamps();
         });

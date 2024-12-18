@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-	<title>SPK-Promosi</title>
+	<title>SIMPEG</title>
 
 	<!-- Bootstrap -->
 	<link href="{{ asset('vendors/resource/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -80,22 +80,23 @@
 					<!-- sidebar menu -->
 					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 						<div class="menu_section">
-							<h3>Menu</h3>
 							<ul class="nav side-menu">
 								<li>
 									<a href=""><i class="fa fa-dashboard"></i>Dashboard</a>
 								</li>
-								<li><a><i class="fa fa-edit"></i> Penilaian <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li>
-											<a href="">
-												<i class="fa fa-calculator"></i>Penilaian SPK</a>
-										</li>
-									</ul>
+							</ul>
+						</div>
+						<div class="menu_section">
+							<h3>Rekrutmen</h3>
+							<ul class="nav side-menu">
+								<li>
+									<a href="{{ route('lowongan.index') }}"><i class="fa fa-newspaper-o"></i>Lowongan</a>
+								</li>
+								<li>
+									<a href=""><i class="fa fa-briefcase"></i>Pelamar</a>
 								</li>
 							</ul>
 						</div>
-
 
 						{{-- <div class="menu_section">
 							<ul class="nav side-menu">
@@ -179,7 +180,7 @@
 
 			<!-- page content -->
 			<div class="right_col" role="main">
-				<div class="row">
+				<div class="row justify-content-center">
 					@yield('content')
 				</div>
 			</div>
@@ -196,7 +197,7 @@
 		</div>
 	</div>
 
-	@yield('scripts')
+	@yield('script')
 
 	<!-- jQuery -->
 	<script src="{{ asset('vendors/resource/jquery/dist/jquery.min.js') }}"></script>

@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::middleware('auth')->group(function () {
+// Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('master');
     });
@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/lamaran/update/{id}', [RekrutmenController::class, 'lamaranUpdate'])->name('lamaran.update');
         Route::put('/lamaran/status/{id}', [RekrutmenController::class, 'lamaranStatus'])->name('lamaran.status');
     });
-});
+// });
 
 Route::get('/registrasi', [RegistrasiController::class, 'create'])->name('registrasi.form');
 Route::post('/registrasi', [RegistrasiController::class, 'store'])->name('registrasi.store');

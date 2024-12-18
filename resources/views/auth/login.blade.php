@@ -48,6 +48,23 @@
 
 		<div class="login_wrapper">
 			<div class="animate form login_form">
+				@if (session('success'))
+					<div class="alert alert-success">
+						{{ session('success') }}
+					</div>
+				@endif
+
+				@if (session('error'))
+					<div class="alert alert-danger">
+						{{ session('error') }}
+					</div>
+				@endif
+
+				@if (session('any'))
+					<div class="alert alert-info">
+						{{ session('any') }}
+					</div>
+				@endif
 				<section class="login_content">
 					<form action="{{ route('login') }}" method="post">
 						@csrf
