@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('rekrutmens', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('id_pelamar');
+            $table->foreign('id_pelamar')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('id_lowongan');
             $table->foreign('id_lowongan')->references('id')->on('lowongans')->onDelete('cascade');
             $table->string('status')->default('Diajukan');

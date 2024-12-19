@@ -28,25 +28,27 @@
 			</div>
 			<!-- /.card-header -->
 			<!-- form start -->
-			<form action="{{ route('lowongan.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+			<form action="{{ route('lamaran.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
 				@csrf
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="form-group">
 								<label for="jabatan_id">Jabatan</label>
-								<select name="jabatan_id" class="form-control select2">
-									<option selected="selected" disabled></option>
-									@foreach ($jabatan as $item)
-										<option value="{{ $item->id }}">{{ $item->nama_jabatan }}</option>
-									@endforeach
-								</select>
+								<input type="text" value="{{ $lowongan->jabatan->nama_jabatan }}" class="form-control" readonly>
+								<input type="hidden" name="id_lowongan" value="{{ $lowongan->id }}">
 							</div>
 						</div>
 						<div class="col-sm-12">
 							<div class="form-group">
 								<label for="alamat">Deskripsi</label>
-								<textarea name="deskripsi" class="form-control" rows="3" placeholder="Masukkan prasyarat upload disini"></textarea>
+								<textarea name="deskripsi" class="form-control" rows="3" readonly>{{ $lowongan->deskripsi }}</textarea>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label>Upload CV</label>
+								<input type="file" class="form-control" name="file" required>
 							</div>
 						</div>
 					</div>

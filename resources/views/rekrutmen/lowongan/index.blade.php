@@ -1,6 +1,6 @@
 @extends('master')
 @section('content')
-	<div class="col-sm-6">
+	<div class="col-sm-9">
 		@if (session('success'))
 			<div class="alert alert-success" id="success-alert">
 				{{ session('success') }}
@@ -33,7 +33,7 @@
 			</div>
 			<!-- /.card-header -->
 			<div class="card-body">
-				<table id="example1" class="table table-bordered table-striped">
+				<table id="datatable" class="table table-striped table-bordered">
 					<thead>
 						<tr>
 							<th style="width: 5px">#</th>
@@ -48,13 +48,19 @@
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $item->jabatan->nama_jabatan }}</td>
 								<td>{{ $item->status }}</td>
-								<td><a href="{{ route('lowongan.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-									<form action="{{ route('lowongan.destroy', $item->id) }}" method="POST" style="display:inline;">
-										@csrf
-										@method('DELETE')
-										<button type="submit" class="btn btn-danger btn-sm"
-											onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
-									</form>
+								<td>
+									@if (Auth::user()->role == 'Admin')
+										<a href="{{ route('lowongan.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
+										<form action="{{ route('lowongan.destroy', $item->id) }}" method="POST" style="display:inline;">
+											@csrf
+											@method('DELETE')
+											<button type="submit" class="btn btn-danger btn-block"
+												onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+										</form>
+									@endif
+									@if (Auth::user()->role == 'Pelamar')
+										<a href="{{ route('lamaran.regist', $item->id) }}" class="btn btn-info btn-block">Lamar</a>
+									@endif
 								</td>
 							</tr>
 						@endforeach

@@ -17,9 +17,10 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::create([
-            'username' => 'test',
+            'username' => 'admin',
             'password' => bcrypt('123'),
-            'nama' => 'Test User',
+            'nama' => 'Admin',
+            'role' => 'Admin',
         ]);
 
         $jabatan = [

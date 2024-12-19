@@ -11,7 +11,7 @@
 
 	<title>SIMPEG</title>
 
-	{{-- <!-- Bootstrap -->
+	<!-- Bootstrap -->
 	<link href="{{ asset('vendors/resource/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- Font Awesome -->
 	<link href="{{ asset('vendors/resource/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -40,7 +40,7 @@
 	<link href="{{ asset('vendors/resource/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}"
 		rel="stylesheet">
 	<link href="{{ asset('vendors/resource/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}"
-		rel="stylesheet"> --}}
+		rel="stylesheet">
 
 	@yield('styles')
 </head>
@@ -80,9 +80,10 @@
 					<!-- sidebar menu -->
 					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 						<div class="menu_section">
+							<h3>Karyawan</h3>
 							<ul class="nav side-menu">
 								<li>
-									<a href=""><i class="fa fa-dashboard"></i>Dashboard</a>
+									<a href="{{ route('karyawan.index') }}"><i class="fa fa-database"></i>Data Karyawan</a>
 								</li>
 							</ul>
 						</div>
@@ -93,7 +94,7 @@
 									<a href="{{ route('lowongan.index') }}"><i class="fa fa-newspaper-o"></i>Lowongan</a>
 								</li>
 								<li>
-									<a href=""><i class="fa fa-briefcase"></i>Pelamar</a>
+									<a href="{{ route('lamaran.index') }}"><i class="fa fa-briefcase"></i>Pelamar</a>
 								</li>
 							</ul>
 						</div>
@@ -154,19 +155,19 @@
 							<li class="nav-item dropdown open" style="padding-left: 15px;">
 								<a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
 									data-toggle="dropdown" aria-expanded="false">
-									{{-- <i class="fa fa-user"></i> <span>{{ Auth::user()->name }} -
-										{{ Auth::user()->role }}</span> --}}
+									<i class="fa fa-user"></i> <span>{{ Auth::user()->nama }} -
+										{{ Auth::user()->role }}</span>
 								</a>
 								<div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
 									{{-- <a class="dropdown-item" href="login.html"><i class="fa fa-sign-out pull-right"></i>
 										Log Out</a> --}}
-									{{-- <form method="POST" action="{{ route('logout') }}">
+									<form method="POST" action="{{ route('logout') }}">
 										@csrf
 
 										<a href="#" class="dropdown-item" onclick="event.preventDefault(); this.closest('form').submit();">
 											<i class="fa fa-sign-out pull-right"></i> Log Out
 										</a>
-									</form> --}}
+									</form>
 								</div>
 
 

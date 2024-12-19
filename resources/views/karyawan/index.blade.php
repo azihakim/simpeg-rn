@@ -34,7 +34,7 @@
 			</div>
 			<!-- /.card-header -->
 			<div class="card-body">
-				<table id="example1" class="table table-bordered table-striped">
+				<table id="datatable" class="table table-striped table-bordered" style="width:100%">
 					<thead>
 						<tr>
 							<th style="width: 5px">#</th>
@@ -51,7 +51,7 @@
 							<tr>
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $karyawan->nama }}</td>
-								<td>{{ $karyawan->jabatan->nama_jabatan ?? "-" }}</td>
+								<td>{{ $karyawan->jabatan->nama_jabatan ?? '-' }}</td>
 								<td>{{ $karyawan->alamat }}</td>
 								<td>{{ $karyawan->no_telp }}</td>
 								<td>{{ $karyawan->nik }}</td>

@@ -112,7 +112,7 @@ class RekrutmenController extends Controller
             // Create Rekrutmen entry
             Rekrutmen::create([
                 'id_lowongan' => $request->id_lowongan,
-                'id_pelamar' => auth()->id(),
+                'id_pelamar' => auth()->user()->id,
                 'file' => $filename,
             ]);
 
@@ -152,7 +152,7 @@ class RekrutmenController extends Controller
             // Update Rekrutmen entry
             Rekrutmen::find($id)->update($data);
 
-            return redirect()->back()->with('success', 'Lamaran berhasil diupdate');
+            return redirect()->route('lamaran.index')->with('success', 'Lamaran berhasil diupdate');
         } catch (\Exception $e) {
             Log::error('Error updating lamaran: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());

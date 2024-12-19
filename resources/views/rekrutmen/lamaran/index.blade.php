@@ -1,6 +1,6 @@
 @extends('master')
 @section('content')
-	<div class="col-sm-6">
+	<div class="col-sm-10">
 		@if (session('success'))
 			<div class="alert alert-success" id="success-alert">
 				{{ session('success') }}
@@ -23,17 +23,17 @@
 		@endif
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">Lowongan</h3>
+				<h3 class="card-title">Lamaran</h3>
 
-				<div class="card-tools">
+				{{-- <div class="card-tools">
 					<div class="btn-group">
 						<a href="{{ route('lowongan.create') }}" class="btn btn-outline-primary">Tambah Lowongan</a>
 					</div>
-				</div>
+				</div> --}}
 			</div>
 			<!-- /.card-header -->
 			<div class="card-body">
-				<table id="example1" class="table table-bordered table-striped">
+				<table id="datatable" class="table table-striped table-bordered" style="width:100%">
 					<thead>
 						<tr>
 							<th style="width: 5px">#</th>
@@ -43,18 +43,41 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($lowongan as $item)
+						@foreach ($lamaran as $item)
 							<tr>
 								<td>{{ $loop->iteration }}</td>
-								<td>{{ $item->jabatan->nama_jabatan }}</td>
+								<td>{{ $item->lowongan->jabatan->nama_jabatan }}</td>
 								<td>{{ $item->status }}</td>
-								<td><a href="{{ route('lowongan.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-									<form action="{{ route('lowongan.destroy', $item->id) }}" method="POST" style="display:inline;">
-										@csrf
-										@method('DELETE')
-										<button type="submit" class="btn btn-danger btn-sm"
-											onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
-									</form>
+								<td>
+									@if ($item->status == 'Diajukan' && Auth::user()->role == 'Pelamar')
+										<a href="{{ route('lamaran.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
+									@endif
+									@if (Auth()->user()->role == 'Admin')
+										<div class="dropdown">
+											<button class="btn btn-outline-info btn-block dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
+												data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Respon</button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
+												<h6 class="dropdown-header">Cek Lamaran</h6>
+												<a class="dropdown-item" href="{{ asset('storage/lamaran_files/' . $item->file) }}" target="_blank">Cek
+													Berkas</a>
+												<div class="dropdown-divider"></div>
+
+												<h6 class="dropdown-header">Ubah Status</h6>
+												<form action="{{ route('lamaran.status', $item->id) }}" method="POST" style="display:inline;">
+													@csrf
+													@method('PUT')
+													<input type="hidden" name="status" value="Ditolak">
+													<button class="dropdown-item" type="submit">Tolak</button>
+												</form>
+												<form action="{{ route('lamaran.status', $item->id) }}" method="POST" style="display:inline;">
+													@csrf
+													@method('PUT')
+													<input type="hidden" name="status" value="Diterima">
+													<button class="dropdown-item" type="submit">Terima</button>
+												</form>
+											</div>
+										</div>
+									@endif
 								</td>
 							</tr>
 						@endforeach

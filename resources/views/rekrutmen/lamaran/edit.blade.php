@@ -16,19 +16,19 @@
 			<div class="alert alert-danger" id="error-alert">
 				{{ session('error') }}
 			</div>
-			<script>
+			{{-- <script>
 				setTimeout(function() {
 					document.getElementById('error-alert').style.display = 'none';
 				}, 3000);
-			</script>
+			</script> --}}
 		@endif
 		<div class="card card-primary">
 			<div class="card-header">
-				<h3 class="card-title">Form Tambah Lowongan</h3>
+				<h3 class="card-title">Form Kirim Lamaran</h3>
 			</div>
 			<!-- /.card-header -->
 			<!-- form start -->
-			<form action="{{ route('lowongan.update', $lowongan->id) }}" method="POST" enctype="multipart/form-data"
+			<form action="{{ route('lamaran.update', $data->id) }}" method="POST" enctype="multipart/form-data"
 				class="form-horizontal">
 				@csrf
 				@method('PUT')
@@ -37,28 +37,29 @@
 						<div class="col-sm-12">
 							<div class="form-group">
 								<label for="jabatan_id">Jabatan</label>
-								<select name="jabatan_id" class="form-control select2">
-									<option selected="selected" disabled></option>
-									@foreach ($jabatan as $item)
-										<option value="{{ $item->id }}" {{ $item->id == $lowongan->jabatan_id ? 'selected' : '' }}>
-											{{ $item->nama_jabatan }}</option>
-									@endforeach
-								</select>
+								<input type="text" value="{{ $data->lowongan->jabatan->nama_jabatan }}" class="form-control" readonly>
+								<input type="hidden" name="id_lowongan" value="{{ $data->lowongan->id }}">
 							</div>
 						</div>
 						<div class="col-sm-12">
 							<div class="form-group">
-								<label for="status">Status</label>
-								<select name="status" class="form-control select2">
-									<option value="Aktif" {{ $lowongan->status == 'Aktif' ? 'selected' : '' }}>Aktif</option>
-									<option value="Non Aktif" {{ $lowongan->status == 'Non Aktif' ? 'selected' : '' }}>Non Aktif</option>
-								</select>
+								<label for="alamat">Deskripsi</label>
+								<textarea name="deskripsi" class="form-control" rows="3" readonly>{{ $data->lowongan->deskripsi }}</textarea>
 							</div>
 						</div>
 						<div class="col-sm-12">
 							<div class="form-group">
-								<label for="deskripsi">Deskripsi</label>
-								<textarea name="deskripsi" class="form-control" rows="3" placeholder="Masukkan prasyarat upload disini">{{ $lowongan->deskripsi }}</textarea>
+								<label>File CV</label>
+								<br>
+								<a href="{{ asset('storage/lamaran_files/' . $data->file) }}" target="_blank"
+									class="btn btn-outline-info btn-block">Lihat
+									CV</a>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label>Upload CV baru</label>
+								<input type="file" class="form-control" name="file" required>
 							</div>
 						</div>
 					</div>
