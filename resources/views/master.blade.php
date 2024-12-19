@@ -54,7 +54,7 @@
 
 						<a href="#" class="site_title">
 							{{-- <img src="{{ asset('vendors/build/images/logo.png') }}" class="profile_pic" style="width: 50px"> --}}
-							<i class="fa fa-edit"></i>
+							<i class="fa fa-users"></i>
 							<span>&nbsp;SIMPEG</span>
 						</a>
 						{{-- <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella
