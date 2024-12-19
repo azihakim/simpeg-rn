@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
-use App\Models\Karyawan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +13,7 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $karyawan = Karyawan::all();
+        $karyawan = User::where('role', 'Karyawan')->get();
         return view('karyawan.index', compact('karyawan'));
     }
 
@@ -27,10 +26,7 @@ class KaryawanController extends Controller
         return view('karyawan.create', compact('jabatan'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request, User $user)
+   public function store(Request $request, User $user)
     {
         try {
             $request->validate([
@@ -43,13 +39,7 @@ class KaryawanController extends Controller
                 'password' => 'nullable',
             ]);
 
-            $user = $user->create([
-                'username' => $request->username,
-                'password' => bcrypt($request->password),
-            ]);
-
-            Karyawan::create(array_merge($request->all(), ['user_id' => $user->id]));
-
+            User::create($request->all());
 
             return redirect()->route('karyawan.index')
                 ->with('success', 'Karyawan created successfully');
@@ -59,27 +49,14 @@ class KaryawanController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Karyawan $karyawan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Karyawan $karyawan)
+    public function edit($id)
     {
         $jabatan = Jabatan::all();
+        $karyawan = User::find($id);
         return view('karyawan.edit', compact('karyawan', 'jabatan'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Karyawan $karyawan, User $user)
+    public function update(Request $request, $id)
     {
         try {
             $request->validate([
@@ -92,29 +69,29 @@ class KaryawanController extends Controller
                 'password' => 'nullable',
             ]);
 
+            $karyawan = User::find($id);
             $karyawan->update($request->except(['username', 'password']));
 
-            if ($request->filled('username') || $request->filled('password')) {
-                $karyawan->user->update([
-                    'username' => $request->username,
-                    'password' => $request->filled('password') ? bcrypt($request->password) : $karyawan->user->password,
-                ]);
+            if ($request->filled('username')) {
+                $karyawan->update(['username' => $request->username]);
+            }
+
+            if ($request->filled('password')) {
+                $karyawan->update(['password' => bcrypt($request->password)]);
             }
 
             return redirect()->route('karyawan.index')
                 ->with('success', 'Karyawan updated successfully');
         } catch (\Exception $e) {
-            return redirect()->route('karyawan.edit', $karyawan)
+            return redirect()->route('karyawan.edit', $id)
                 ->with('error', 'Error updating Karyawan: ' . $e->getMessage());
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Karyawan $karyawan)
+    public function destroy($id)
     {
         try {
+            $karyawan = User::find($id);
             $karyawan->delete();
 
             return redirect()->route('karyawan.index')

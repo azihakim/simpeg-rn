@@ -16,7 +16,14 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->enum('role', ['Admin', 'Karyawan', 'Pelamar'])->default('Karyawan');
-            $table->rememberToken();
+            $table->string('nama');
+            $table->unsignedBigInteger('jabatan_id')->nullable();
+            $table->foreign('jabatan_id')->references('id')->on('jabatans');
+            $table->string('alamat')->nullable();
+            $table->string('jenis_kelamin')->nullable();
+            $table->integer('umur')->nullable();
+            $table->string('no_telp')->nullable();
+            $table->string('nik')->nullable();
             $table->timestamps();
         });
 

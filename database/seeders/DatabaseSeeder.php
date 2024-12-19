@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'username' => 'test',
             'password' => bcrypt('123'),
+            'nama' => 'Test User',
         ]);
 
         $jabatan = [

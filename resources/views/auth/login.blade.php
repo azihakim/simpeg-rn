@@ -10,7 +10,7 @@
 
 	<title>SIMPEG</title>
 
-	<link href="{{ asset('vendors/resource/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+	{{-- <link href="{{ asset('vendors/resource/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- Font Awesome -->
 	<link href="{{ asset('vendors/resource/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 	<!-- NProgress -->
@@ -38,7 +38,7 @@
 	<link href="{{ asset('vendors/resource/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}"
 		rel="stylesheet">
 	<link href="{{ asset('vendors/resource/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}"
-		rel="stylesheet">
+		rel="stylesheet"> --}}
 </head>
 
 <body class="login">

@@ -21,16 +21,12 @@ class RegistrasiController extends Controller
             $user->role = "Pelamar";
             $user->username = $request->username;
             $user->password = bcrypt($request->password);
+            $user->nama = $request->nama;
+            $user->no_telp = $request->no_telp;
+            $user->umur = $request->umur;
+            $user->alamat = $request->alamat;
+            $user->jenis_kelamin = $request->jenis_kelamin;
             $user->save();
-
-            $karyawan = new Pelamar();
-            $karyawan->nama = $request->nama;
-            $karyawan->no_telp = $request->no_telp;
-            $karyawan->umur = $request->umur;
-            $karyawan->alamat = $request->alamat;
-            $karyawan->jenis_kelamin = $request->jenis_kelamin;
-            $karyawan->user_id = $user->id; // Assuming you have a foreign key relationship
-            $karyawan->save();
 
             return redirect()->route('login')->with('success', 'Registrasi berhasil');
         } catch (\Exception $e) {

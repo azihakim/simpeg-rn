@@ -26,6 +26,12 @@ class User extends Authenticatable
         'username',
         'role',
         'password',
+        'nama',
+        'jabatan_id',
+        'alamat',
+        'no_telp',
+        'nik',
+        'jenis_kelamin',
     ];
 
     /**
