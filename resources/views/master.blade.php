@@ -29,7 +29,7 @@
 	<link href="{{ asset('vendors/resource/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
 
 	<!-- Custom Theme Style -->
-	<link href="{{ asset('vendors/build/css/custom.min.css') }}" rel="stylesheet">
+	{{-- <link href="{{ asset('vendors/build/css/custom.min.css') }}" rel="stylesheet"> --}}
 
 	<!-- Datatables -->
 
@@ -85,6 +85,9 @@
 								<li>
 									<a href="{{ route('karyawan.index') }}"><i class="fa fa-database"></i>Data Karyawan</a>
 								</li>
+								<li>
+									<a href="{{ route('cutiizin.index') }}"><i class="fa fa-calendar"></i>Cuti/Izin</a>
+								</li>
 							</ul>
 						</div>
 						<div class="menu_section">
@@ -99,36 +102,6 @@
 							</ul>
 						</div>
 
-						{{-- <div class="menu_section">
-							<ul class="nav side-menu">
-								@if (Auth::user()->role == 'Admin')
-									<li>
-										<a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i>Dashboard</a>
-									</li>
-									<li>
-										<a href="{{ route('penilaian.index') }}"><i class="fa fa-calculator"></i>Penilaian</a>
-									</li>
-									<li>
-										<a href="{{ route('karyawan.index') }}"><i class="fa fa-users"></i>Karyawan</a>
-									</li>
-									<li>
-										<a href="{{ route('kriteria.index') }}"><i class="fa fa-bar-chart"></i>Kriteria</a>
-									</li>
-									<li>
-										<a href="{{ route('subkriteria.index') }}"><i class="fa fa-bar-chart"></i>Sub
-											Kriteria</a>
-									</li>
-								@elseif(Auth::user()->role == 'Karyawan')
-									<li>
-										<a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i>Dashboard</a>
-									</li>
-									<li>
-										<a href="{{ route('penilaian.index') }}"><i class="fa fa-calculator"></i>Penilaian</a>
-									</li>
-								@endif
-
-							</ul>
-						</div> --}}
 
 					</div>
 					<!-- /sidebar menu -->

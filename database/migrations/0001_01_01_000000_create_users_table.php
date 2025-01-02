@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('username')->unique();
             $table->string('password');
-            $table->enum('role', ['Admin', 'Karyawan', 'Pelamar'])->default('Karyawan');
+            $table->string('role');
             $table->string('nama');
             $table->unsignedBigInteger('jabatan_id')->nullable();
             $table->foreign('jabatan_id')->references('id')->on('jabatans');
