@@ -27,14 +27,16 @@
 				<h3 class="card-title">Karyawan</h3>
 
 				<div class="card-tools">
-					<div class="btn-group">
-						<a href="{{ route('karyawan.create') }}" class="btn btn-outline-primary">Tambah Karyawn</a>
-					</div>
+					@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan != 'Pimpinan')
+						<div class="btn-group">
+							<a href="{{ route('karyawan.create') }}" class="btn btn-outline-primary">Tambah Karyawn</a>
+						</div>
+					@endif
 				</div>
 			</div>
 			<!-- /.card-header -->
 			<div class="card-body">
-				<table id="datatable" class="table table-striped table-bordered" style="width:100%">
+				<table id="datatable" class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th style="width: 5px">#</th>
@@ -43,11 +45,13 @@
 							<th>Alamat</th>
 							<th>No. Telp</th>
 							<th>NIK</th>
-							<th style="width: 15%">Aksi</th>
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
+								<th style="width: 15%">Aksi</th>
+							@endif
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($karyawan as $karyawan)
+						@foreach ($data as $karyawan)
 							<tr>
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $karyawan->nama }}</td>
@@ -55,14 +59,16 @@
 								<td>{{ $karyawan->alamat }}</td>
 								<td>{{ $karyawan->no_telp }}</td>
 								<td>{{ $karyawan->nik }}</td>
-								<td>
-									<a href="{{ route('karyawan.edit', $karyawan->id) }}" class="btn btn-warning btn-sm">Edit</a>
-									<form action="{{ route('karyawan.destroy', $karyawan->id) }}" method="POST" style="display:inline;">
-										@csrf
-										@method('DELETE')
-										<button type="submit" class="btn btn-danger btn-sm">Delete</button>
-									</form>
-								</td>
+								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
+									<td>
+										<a href="{{ route('karyawan.edit', $karyawan->id) }}" class="btn btn-warning btn-sm">Edit</a>
+										<form action="{{ route('karyawan.destroy', $karyawan->id) }}" method="POST" style="display:inline;">
+											@csrf
+											@method('DELETE')
+											<button type="submit" class="btn btn-danger btn-sm">Delete</button>
+										</form>
+									</td>
+								@endif
 							</tr>
 						@endforeach
 					</tbody>

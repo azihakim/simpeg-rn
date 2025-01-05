@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('absensi', function (Blueprint $table) {
+        Schema::create('reward_punishments', function (Blueprint $table) {
             $table->id();
-            $table->decimal('latitude', 10, 8)->nullable();
-            $table->decimal('longitude', 11, 8)->nullable();
-            $table->string('keterangan');
-            $table->string('foto');
             $table->unsignedBigInteger('id_karyawan');
             $table->foreign('id_karyawan')->references('id')->on('users');
-            $table->boolean('status')->default(0); // 0: diluar jangkauan, 1: dalam jangkauan
+            $table->string('jenis');
+            $table->string('keterangan')->nullable();
+            $table->date('tanggal');
+            $table->string('surat_punishment')->nullable();
+            $table->string('status')->default('Menunggu');
+            $table->integer('reward')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('absensi');
+        Schema::dropIfExists('reward_punishments');
     }
 };

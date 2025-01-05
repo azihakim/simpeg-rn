@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('penugasans', function (Blueprint $table) {
+        Schema::create('latlongs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('surat')->nullable();
-            $table->string('keterangan')->nullable();
-            $table->string('status')->default('Aktif');
+            $table->string('location');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('penugasans');
+        Schema::dropIfExists('latlongs');
     }
 };

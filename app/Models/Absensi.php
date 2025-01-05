@@ -14,11 +14,11 @@ class Absensi extends Model
         'latitude',
         'longitude',
         'status',
-        'user_id',
+        'id_karyawan',
     ];
 
     function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_karyawan');
     }
 }

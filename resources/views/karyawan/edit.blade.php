@@ -28,7 +28,7 @@
 			</div>
 			<!-- /.card-header -->
 			<!-- form start -->
-			<form action="{{ route('karyawan.update', $karyawan->id) }}" method="POST" enctype="multipart/form-data"
+			<form action="{{ route('karyawan.update', $data->id) }}" method="POST" enctype="multipart/form-data"
 				class="form-horizontal">
 				@csrf
 				@method('PUT')
@@ -37,43 +37,31 @@
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="nama">Nama</label>
-								<input type="text" name="nama" class="form-control" value="{{ $karyawan->nama }}">
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label for="jabatan_id">Jabatan</label>
-								<select name="jabatan_id" class="form-control select2">
-									<option selected="selected" disabled></option>
-									@foreach ($jabatan as $item)
-										<option value="{{ $item->id }}" {{ $item->id == $karyawan->jabatan_id ? 'selected' : '' }}>
-											{{ $item->nama_jabatan }}</option>
-									@endforeach
-								</select>
+								<input type="text" name="nama" class="form-control" value="{{ $data->nama }}">
 							</div>
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="no_telp">Nomor HP</label>
-								<input type="text" name="no_telp" class="form-control" value="{{ $karyawan->no_telp }}">
+								<input type="text" name="no_telp" class="form-control" value="{{ $data->no_telp }}">
 							</div>
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="alamat">Alamat</label>
-								<input type="text" name="alamat" class="form-control" value="{{ $karyawan->alamat }}">
+								<input type="text" name="alamat" class="form-control" value="{{ $data->alamat }}">
 							</div>
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="nik">NIK</label>
-								<input type="text" name="nik" class="form-control" value="{{ $karyawan->nik }}">
+								<input type="text" name="nik" class="form-control" value="{{ $data->nik }}">
 							</div>
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="username">Username</label>
-								<input type="text" name="username" class="form-control" value="{{ $karyawan->user->username }}">
+								<input type="text" name="username" class="form-control" value="{{ $data->username }}">
 							</div>
 						</div>
 						<div class="col-sm-4">

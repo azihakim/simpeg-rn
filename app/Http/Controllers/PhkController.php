@@ -13,7 +13,11 @@ class PhkController extends Controller
      */
     public function index()
     {
-        $data = Phk::all();
+        if (auth()->user()->jabatan == 'karyawan') {
+            $data = Phk::where('id_karyawan', auth()->user()->id)->get();
+        } else {
+            $data = Phk::all();
+        }
         return view('phk.index', compact('data'));
     }
 
@@ -31,9 +35,8 @@ class PhkController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
-            'user_id' => 'required',
+            'id_karyawan' => 'required',
             'surat_phk' => 'required|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
@@ -46,7 +49,7 @@ class PhkController extends Controller
             }
 
             $phk = new Phk();
-            $phk->user_id = $request->user_id;
+            $phk->id_karyawan = $request->id_karyawan;
             $phk->surat = $filename;
             $phk->keterangan = $request->keterangan;
             $phk->save();
@@ -67,9 +70,9 @@ class PhkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'surat_phk' => 'required|file|mimes:pdf,doc,docx|max:2048',
-        ]);
+        // $request->validate([
+        //     'surat_phk' => 'required|file|mimes:pdf,doc,docx|max:2048',
+        // ]);
 
         try {
             if ($request->hasFile('surat_phk')) {
@@ -80,8 +83,11 @@ class PhkController extends Controller
             }
 
             $phk = phk::find($id);
-            $phk->surat = $filename;
+            if ($request->hasFile('surat_phk')) {
+                $phk->surat = $filename;
+            }
             $phk->keterangan = $request->keterangan;
+            $phk->status = $request->status;
             $phk->save();
             return redirect()->route('phk.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {

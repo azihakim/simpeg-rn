@@ -29,7 +29,7 @@
 	<link href="{{ asset('vendors/resource/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
 
 	<!-- Custom Theme Style -->
-	{{-- <link href="{{ asset('vendors/build/css/custom.min.css') }}" rel="stylesheet"> --}}
+	<link href="{{ asset('vendors/build/css/custom.min.css') }}" rel="stylesheet">
 
 	<!-- Datatables -->
 
@@ -82,13 +82,64 @@
 						<div class="menu_section">
 							<h3>Karyawan</h3>
 							<ul class="nav side-menu">
-								<li>
-									<a href="{{ route('karyawan.index') }}"><i class="fa fa-database"></i>Data Karyawan</a>
-								</li>
-								<li>
-									<a href="{{ route('cutiizin.index') }}"><i class="fa fa-calendar"></i>Cuti/Izin</a>
-								</li>
+								@if (Auth::user()->jabatan == 'Super Admin')
+									<li>
+										<a href="{{ route('karyawan.index') }}">
+											<i class="fa fa-database"></i> Data Karyawan
+										</a>
+									</li>
+								@endif
+								@if (Auth::user()->jabatan == 'Super Admin')
+									<li>
+										<a href="{{ route('jabatan.index') }}">
+											<i class="fa fa-users"></i> Jabatan
+										</a>
+									</li>
+								@endif
+								@if (Auth::user()->jabatan == 'Super Admin')
+									<li>
+										<a href="{{ route('absensi.index') }}">
+											<i class="fa fa-calendar"></i> Absensi
+										</a>
+									</li>
+								@endif
+								@if (Auth::user()->jabatan == 'Super Admin')
+									<li>
+										<a href="{{ route('cutiizin.index') }}">
+											<i class="fa fa-calendar-times"></i> Cuti/Izin
+										</a>
+									</li>
+								@endif
+								@if (Auth::user()->jabatan == 'Super Admin')
+									<li>
+										<a href="{{ route('promosidemosi.index') }}">
+											<i class="fa fa-bullhorn"></i> Promosi/Demosi
+										</a>
+									</li>
+								@endif
+								@if (Auth::user()->jabatan == 'Super Admin')
+									<li>
+										<a href="{{ route('resign.index') }}">
+											<i class="fa fa-user-times"></i> Pengunduran Diri
+										</a>
+									</li>
+								@endif
+								@if (Auth::user()->jabatan == 'Super Admin')
+									<li>
+										<a href="{{ route('rewardpunishment.index') }}">
+											<i class="fa fa-gavel"></i> Reward/Punishment
+										</a>
+									</li>
+								@endif
+								@if (Auth::user()->jabatan == 'Super Admin')
+									<li>
+										<a href="{{ route('phk.index') }}">
+											<i class="fa fa-users-slash"></i> PHK
+										</a>
+									</li>
+								@endif
 							</ul>
+
 						</div>
 						<div class="menu_section">
 							<h3>Rekrutmen</h3>
@@ -129,7 +180,7 @@
 								<a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
 									data-toggle="dropdown" aria-expanded="false">
 									<i class="fa fa-user"></i> <span>{{ Auth::user()->nama }} -
-										{{ Auth::user()->role }}</span>
+										{{ Auth::user()->jabatan }}</span>
 								</a>
 								<div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
 									{{-- <a class="dropdown-item" href="login.html"><i class="fa fa-sign-out pull-right"></i>

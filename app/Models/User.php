@@ -9,12 +9,18 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
-
-    function karyawan()
+    public function absensi()
     {
-        return $this->belongsTo(Karyawan::class);
+        return $this->hasMany(Absensi::class, 'id_karyawan', 'id');
+    }
+    public function divisi()
+    {
+        return $this->belongsTo(Jabatan::class, 'divisi_id', 'id');
+    }
+    public function punishments()
+    {
+        return $this->hasMany(RewardPunishment::class, 'id_karyawan');
     }
 
     /**
@@ -23,15 +29,20 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'username',
-        'role',
+        'name',
+        'email',
         'password',
         'nama',
-        'jabatan_id',
-        'alamat',
-        'no_telp',
+        'jabatan',
+        'status',
+        'status_kerja',
         'nik',
-        'jenis_kelamin',
+        'umur',
+        'telepon',
+        'alamat',
+        'username',
+        'password',
+        'divisi',
     ];
 
     /**
@@ -45,15 +56,11 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

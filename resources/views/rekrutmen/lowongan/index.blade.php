@@ -1,4 +1,5 @@
 @extends('master')
+@section('act-lowongan', 'active')
 @section('content')
 	<div class="col-sm-9">
 		@if (session('success'))
@@ -26,9 +27,11 @@
 				<h3 class="card-title">Lowongan</h3>
 
 				<div class="card-tools">
-					<div class="btn-group">
-						<a href="{{ route('lowongan.create') }}" class="btn btn-outline-primary">Tambah Lowongan</a>
-					</div>
+					@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
+						<div class="btn-group">
+							<a href="{{ route('lowongan.create') }}" class="btn btn-outline-primary">Tambah Lowongan</a>
+						</div>
+					@endif
 				</div>
 			</div>
 			<!-- /.card-header -->
@@ -39,7 +42,9 @@
 							<th style="width: 5px">#</th>
 							<th>Jabatan</th>
 							<th style="width: 20%">Status</th>
-							<th style="width: 30%">Aksi</th>
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pelamar')
+								<th style="width: 30%">Aksi</th>
+							@endif
 						</tr>
 					</thead>
 					<tbody>
@@ -48,20 +53,22 @@
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $item->jabatan->nama_jabatan }}</td>
 								<td>{{ $item->status }}</td>
-								<td>
-									@if (Auth::user()->role == 'Admin')
-										<a href="{{ route('lowongan.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
-										<form action="{{ route('lowongan.destroy', $item->id) }}" method="POST" style="display:inline;">
-											@csrf
-											@method('DELETE')
-											<button type="submit" class="btn btn-danger btn-block"
-												onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
-										</form>
-									@endif
-									@if (Auth::user()->role == 'Pelamar')
-										<a href="{{ route('lamaran.regist', $item->id) }}" class="btn btn-info btn-block">Lamar</a>
-									@endif
-								</td>
+								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pelamar')
+									<td>
+										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
+											<a href="{{ route('lowongan.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
+											<form action="{{ route('lowongan.destroy', $item->id) }}" method="POST" style="display:inline;">
+												@csrf
+												@method('DELETE')
+												<button type="submit" class="btn btn-danger btn-block"
+													onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+											</form>
+										@endif
+										@if (Auth::user()->jabatan == 'Pelamar')
+											<a href="{{ route('lamaran.regist', $item->id) }}" class="btn btn-info btn-block">Lamar</a>
+										@endif
+									</td>
+								@endif
 							</tr>
 						@endforeach
 					</tbody>
