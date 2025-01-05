@@ -12,6 +12,7 @@ use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\RekrutmenController;
 use App\Http\Controllers\ResignController;
 use App\Http\Controllers\RewardPunishmentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -113,6 +114,14 @@ Route::middleware('auth')->group(function () {
         Route::put('/update/{id}', [PhkController::class, 'update'])->name('phk.update');
         Route::delete('/destroy/{id}', [PhkController::class, 'destroy'])->name('phk.destroy');
         Route::put('/status/{id}', [PhkController::class, 'status'])->name('phk.status');
+    });
+    Route::prefix('user')->group(function () {
+        Route::get('/index-user', [UserController::class, 'index'])->name('user.index');
+        Route::get('/create', [UserController::class, 'create'])->name('user.create');
+        Route::post('/store', [UserController::class, 'store'])->name('user.store');
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+        Route::put('/update/{id}', [UserController::class, 'update'])->name('user.update');
+        Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');
     });
 });
 Route::get('/registrasi', [RegistrasiController::class, 'create'])->name('registrasi.form');

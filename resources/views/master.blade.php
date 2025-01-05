@@ -157,6 +157,13 @@
 											</a>
 										</li>
 									@endif
+									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
+										<li>
+											<a href="{{ route('user.index') }}">
+												<i class="fa fa-laptop"></i> Data Pengguna
+											</a>
+										</li>
+									@endif
 								</ul>
 
 							</div>
