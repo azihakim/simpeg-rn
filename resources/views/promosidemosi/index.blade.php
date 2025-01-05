@@ -16,11 +16,6 @@
 			<div class="alert alert-danger" id="error-alert">
 				{{ session('error') }}
 			</div>
-			<script>
-				setTimeout(function() {
-					document.getElementById('error-alert').style.display = 'none';
-				}, 3000);
-			</script>
 		@endif
 		<div class="card">
 			<div class="card-header">
@@ -28,7 +23,9 @@
 
 				<div class="card-tools">
 					<div class="btn-group">
-						@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan != 'Karyawan')
+						@if (Auth::user()->jabatan == 'Super Admin' ||
+								Auth::user()->jabatan == 'Admin' ||
+								(Auth::user()->jabatan != 'Karyawan' && Auth::user()->jabatan != 'Manajer'))
 							<a href="{{ route('promosidemosi.create') }}" class="btn btn-outline-primary">Tambah Promosi/Demosi</a>
 						@endif
 					</div>
@@ -45,9 +42,7 @@
 							<th>Jabatan Baru</th>
 							<th>Tanggal</th>
 							<th>Status</th>
-							@if (Auth::user()->jabatan == 'Super Admin' ||
-									Auth::user()->jabatan == 'Pimpinan' ||
-									Auth::user()->jabatan != 'Karyawan')
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 								<th>Aksi</th>
 							@endif
 						</tr>
@@ -62,9 +57,9 @@
 								<td>{{ $item->created_at->format('d/m/Y') }}</td>
 								<td>{{ $item->status }}</td>
 
-								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pimpinan')
+								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 									<td>
-										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pimpinan')
+										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pimpinan' || Auth::user()->jabatan == 'Admin')
 											<a href="{{ route('promosidemosi.edit', $item->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
 											<form action="{{ route('promosidemosi.destroy', $item->id) }}" method="POST" class="d-inline">
 												@csrf

@@ -17,7 +17,7 @@
 				<h3 class="card-title">Jabatan</h3>
 
 				<div class="card-tools">
-					@if (Auth::user()->jabatan == 'Super Admin')
+					@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 						<div class="btn-group">
 							<a href="{{ route('jabatan.create') }}" class="btn btn-outline-primary">Tambah Jabatan</a>
 						</div>
@@ -31,7 +31,7 @@
 						<tr>
 							<th style="width: 5px">#</th>
 							<th>Jabatan</th>
-							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pimpinan')
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 								<th style="width: 30%">Aksi</th>
 							@endif
 						</tr>
@@ -41,7 +41,7 @@
 							<tr>
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $item->nama_jabatan }}</td>
-								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pimpinan')
+								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 									<td>
 										<div>
 											<a href="{{ route('jabatan.edit', $item->id) }}" class="btn btn-outline-warning">Edit</a>

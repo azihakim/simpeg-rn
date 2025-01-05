@@ -79,81 +79,105 @@
 
 					<!-- sidebar menu -->
 					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-						<div class="menu_section">
-							<h3>Karyawan</h3>
-							<ul class="nav side-menu">
-								@if (Auth::user()->jabatan == 'Super Admin')
-									<li>
-										<a href="{{ route('karyawan.index') }}">
-											<i class="fa fa-database"></i> Data Karyawan
-										</a>
-									</li>
-								@endif
-								@if (Auth::user()->jabatan == 'Super Admin')
-									<li>
-										<a href="{{ route('jabatan.index') }}">
-											<i class="fa fa-users"></i> Jabatan
-										</a>
-									</li>
-								@endif
-								@if (Auth::user()->jabatan == 'Super Admin')
-									<li>
-										<a href="{{ route('absensi.index') }}">
-											<i class="fa fa-calendar"></i> Absensi
-										</a>
-									</li>
-								@endif
-								@if (Auth::user()->jabatan == 'Super Admin')
-									<li>
-										<a href="{{ route('cutiizin.index') }}">
-											<i class="fa fa-calendar-times"></i> Cuti/Izin
-										</a>
-									</li>
-								@endif
-								@if (Auth::user()->jabatan == 'Super Admin')
-									<li>
-										<a href="{{ route('promosidemosi.index') }}">
-											<i class="fa fa-bullhorn"></i> Promosi/Demosi
-										</a>
-									</li>
-								@endif
-								@if (Auth::user()->jabatan == 'Super Admin')
-									<li>
-										<a href="{{ route('resign.index') }}">
-											<i class="fa fa-user-times"></i> Pengunduran Diri
-										</a>
-									</li>
-								@endif
-								@if (Auth::user()->jabatan == 'Super Admin')
-									<li>
-										<a href="{{ route('rewardpunishment.index') }}">
-											<i class="fa fa-gavel"></i> Reward/Punishment
-										</a>
-									</li>
-								@endif
-								@if (Auth::user()->jabatan == 'Super Admin')
-									<li>
-										<a href="{{ route('phk.index') }}">
-											<i class="fa fa-users-slash"></i> PHK
-										</a>
-									</li>
-								@endif
-							</ul>
+						@if (Auth::user()->jabatan == 'Super Admin' ||
+								Auth::user()->jabatan == 'Karyawan' ||
+								Auth::user()->jabatan == 'Manajer' ||
+								Auth::user()->jabatan == 'Admin')
+							<div class="menu_section">
+								<h3>Karyawan</h3>
+								<ul class="nav side-menu">
+									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Admin')
+										<li>
+											<a href="{{ route('karyawan.index') }}">
+												<i class="fa fa-database"></i> Data Karyawan
+											</a>
+										</li>
+									@endif
+									@if (Auth::user()->jabatan == 'Super Admin' ||
+											Auth::user()->jabatan == 'Karyawan' ||
+											Auth::user()->jabatan == 'Manajer' ||
+											Auth::user()->jabatan == 'Admin')
+										<li>
+											<a href="{{ route('jabatan.index') }}">
+												<i class="fa fa-users"></i> Jabatan
+											</a>
+										</li>
+									@endif
+									@if (Auth::user()->jabatan == 'Super Admin' ||
+											Auth::user()->jabatan == 'Karyawan' ||
+											Auth::user()->jabatan == 'Manajer' ||
+											Auth::user()->jabatan == 'Admin')
+										<li>
+											<a href="{{ route('absensi.index') }}">
+												<i class="fa fa-calendar"></i> Absensi
+											</a>
+										</li>
+									@endif
+									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Karyawan' || Auth::user()->jabatan == 'Manajer')
+										<li>
+											<a href="{{ route('cutiizin.index') }}">
+												<i class="fa fa-calendar-times"></i> Cuti
+											</a>
+										</li>
+									@endif
+									@if (Auth::user()->jabatan == 'Super Admin' ||
+											Auth::user()->jabatan == 'Karyawan' ||
+											Auth::user()->jabatan == 'Manajer' ||
+											Auth::user()->jabatan == 'Admin')
+										<li>
+											<a href="{{ route('promosidemosi.index') }}">
+												<i class="fa fa-bullhorn"></i> Promosi/Demosi
+											</a>
+										</li>
+									@endif
+									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Karyawan' || Auth::user()->jabatan == 'Manajer')
+										<li>
+											<a href="{{ route('resign.index') }}">
+												<i class="fa fa-user-times"></i> Pengunduran Diri
+											</a>
+										</li>
+									@endif
+									@if (Auth::user()->jabatan == 'Super Admin' ||
+											Auth::user()->jabatan == 'Karyawan' ||
+											Auth::user()->jabatan == 'Manajer' ||
+											Auth::user()->jabatan == 'Admin')
+										<li>
+											<a href="{{ route('rewardpunishment.index') }}">
+												<i class="fa fa-gavel"></i> Reward/Punishment
+											</a>
+										</li>
+									@endif
+									@if (Auth::user()->jabatan == 'Super Admin' ||
+											Auth::user()->jabatan == 'Karyawan' ||
+											Auth::user()->jabatan == 'Manajer' ||
+											Auth::user()->jabatan == 'Admin')
+										<li>
+											<a href="{{ route('phk.index') }}">
+												<i class="fa fa-users-slash"></i> PHK
+											</a>
+										</li>
+									@endif
+								</ul>
 
-						</div>
-						<div class="menu_section">
-							<h3>Rekrutmen</h3>
-							<ul class="nav side-menu">
-								<li>
-									<a href="{{ route('lowongan.index') }}"><i class="fa fa-newspaper-o"></i>Lowongan</a>
-								</li>
-								<li>
-									<a href="{{ route('lamaran.index') }}"><i class="fa fa-briefcase"></i>Pelamar</a>
-								</li>
-							</ul>
-						</div>
+							</div>
+						@endif
 
-
+						@if (Auth::user()->jabatan == 'Super Admin' ||
+								Auth::user()->jabatan == 'Pelamar' ||
+								Auth::user()->jabatan == 'Manajer' ||
+								Auth::user()->jabatan == 'Admin')
+							<div class="menu_section">
+								<h3>Rekrutmen</h3>
+								<ul class="nav side-menu">
+									<li>
+										<a href="{{ route('lowongan.index') }}"><i class="fa fa-newspaper-o"></i>Lowongan</a>
+									</li>
+									<li>
+										<a href="{{ route('lamaran.index') }}"><i class="fa fa-briefcase"></i>Pelamar</a>
+									</li>
+								</ul>
+							</div>
+						@endif
 					</div>
 					<!-- /sidebar menu -->
 
@@ -222,8 +246,6 @@
 		</div>
 	</div>
 
-	@yield('script')
-
 	<!-- jQuery -->
 	<script src="{{ asset('vendors/resource/jquery/dist/jquery.min.js') }}"></script>
 	<!-- Bootstrap -->
@@ -281,6 +303,8 @@
 	<script src="{{ asset('vendors/resource/jszip/dist/jszip.min.js') }}"></script>
 	<script src="{{ asset('vendors/resource/pdfmake/build/pdfmake.min.js') }}"></script>
 	<script src="{{ asset('vendors/resource/pdfmake/build/vfs_fonts.js') }}"></script>
+
+	@yield('script')
 </body>
 
 </html>

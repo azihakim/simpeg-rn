@@ -34,7 +34,7 @@
 							<th>Nama Karyawan</th>
 							<th>Status</th>
 							<th>Tanggal Pengajuan</th>
-							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pimpinan')
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
 								<th>Aksi</th>
 							@endif
 						</tr>
@@ -54,7 +54,7 @@
 									@endif
 								</td>
 								<td>{{ $item->created_at->format('d F Y') }}</td>
-								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pimpinan')
+								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
 									<td>
 										<div class="btn-group">
 											<button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"
@@ -62,7 +62,7 @@
 												Aksi
 											</button>
 											<div class="dropdown-menu">
-												@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pimpinan')
+												@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
 													<h6 class="dropdown-header">Ubah Status</h6>
 													<form action="{{ route('resign.status', $item->id) }}" method="POST" style="display:inline;">
 														@csrf

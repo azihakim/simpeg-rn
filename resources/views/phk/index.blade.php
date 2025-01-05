@@ -18,9 +18,7 @@
 
 				<div class="card-tools">
 					<div class="btn-group">
-						@if (Auth::user()->jabatan == 'Super Admin' ||
-								Auth::user()->jabatan == 'Admin' ||
-								(Auth::user()->jabatan != 'Karyawan' && Auth::user()->jabatan != 'Pimpinan'))
+						@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 							<a href="{{ route('phk.create') }}" class="btn btn-outline-primary btn-icon-text">
 								<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah PHK</a>
 						@endif
@@ -38,7 +36,7 @@
 							<th>Surat</th>
 							<th>Keterangan</th>
 							@if (Auth()->user()->jabatan == 'Super Admin' ||
-									Auth()->user()->jabatan == 'Pimpinan' ||
+									Auth()->user()->jabatan == 'Manajer' ||
 									Auth::user()->jabatan == 'Admin')
 								<th>Aksi</th>
 							@endif
@@ -63,7 +61,7 @@
 										Surat</a>
 								</td>
 								<td>{{ $item->keterangan }}</td>
-								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pimpinan' || Auth::user()->jabatan == 'Admin')
+								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Admin')
 									<td>
 										<div class="btn-group">
 											<button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"
@@ -71,7 +69,7 @@
 												Aksi
 											</button>
 											<div class="dropdown-menu">
-												@if (Auth()->user()->jabatan == 'Super Admin' || Auth()->user()->jabatan == 'Pimpinan')
+												@if (Auth()->user()->jabatan == 'Super Admin' || Auth()->user()->jabatan == 'Manajer')
 													<h6 class="dropdown-header">Ubah Status</h6>
 													<form action="{{ route('phk.status', $item->id) }}" method="POST" style="display:inline;">
 														@csrf

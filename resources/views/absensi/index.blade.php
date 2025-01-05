@@ -15,7 +15,7 @@
 				<div class="card-tools">
 					@if (Auth::user()->jabatan == 'Super Admin' ||
 							Auth::user()->jabatan == 'Karyawan' ||
-							Auth::user()->jabatan == 'Pimpinan' ||
+							Auth::user()->jabatan == 'Manajer' ||
 							Auth::user()->jabatan == 'Admin')
 						<div class="">
 							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Karyawan')
@@ -23,9 +23,7 @@
 									<i class="fas fa-calendar-alt"></i> Absen
 								</button><br>
 							@endif
-							@if (Auth::user()->jabatan == 'Super Admin' ||
-									Auth::user()->jabatan == 'Admin' ||
-									(Auth::user()->jabatan != 'Karyawan' && Auth::user()->jabatan == 'Pimpinan'))
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Admin')
 								<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#rekapAbsensi">
 									Rekap Absen
 								</button>

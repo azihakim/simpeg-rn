@@ -47,11 +47,10 @@ class KaryawanController extends Controller
             $karyawan->umur = $request->umur;
             $karyawan->jenis_kelamin = $request->jenis_kelamin;
             $karyawan->telepon = $request->telepon;
-            $karyawan->divisi_id = $pelamar->lowongan->id;
+            $karyawan->divisi_id = $pelamar->lowongan->id_lowongan;
             $karyawan->status = 'Aktif';
             $karyawan->nik = $request->nik;
             $karyawan->jabatan = 'Karyawan';
-            // dd($karyawan);
             // Save the changes
             $karyawan->save();
 

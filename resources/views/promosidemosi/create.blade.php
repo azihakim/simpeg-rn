@@ -45,14 +45,14 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-md-6">
-						<label>Divisi Lama</label>
+						<label>Jabatan Lama</label>
 						<input type="hidden" name="divisi_lama_id">
 						<input type="text" class="form-control" name="divisi_lama_display" disabled>
 					</div>
 					<div class="form-group col-md-6">
-						<label>Divisi Baru</label>
+						<label>Jabatan Baru</label>
 						<select name="divisi_baru_id" class="form-control select2" id="pelamarSelect" style="width: 100%;">
-							<option selected disabled>Pilih Divisi Baru</option>
+							<option selected disabled>Pilih Jabatan Baru</option>
 							@foreach ($divisi as $item)
 								<option value="{{ $item->id }}">
 									{{ $item->nama_jabatan }}

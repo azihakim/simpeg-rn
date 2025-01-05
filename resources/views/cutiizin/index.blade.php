@@ -44,7 +44,7 @@
 							<th>Status</th>
 							<th>Jenis</th>
 							<th>Tanggal</th>
-							@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pimpinan')
+							@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
 								<th>Aksi</th>
 							@endif
 						</tr>
@@ -67,7 +67,7 @@
 								<td>{{ $item->jenis }}</td>
 								<td>{{ \Carbon\Carbon::parse($item->tanggal_mulai)->format('d/m/Y') }} -
 									{{ \Carbon\Carbon::parse($item->tanggal_selesai)->format('d/m/Y') }}</td>
-								@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pimpinan')
+								@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
 									<td>
 										<div class="btn-group">
 											<button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"
@@ -87,7 +87,7 @@
 													</form>
 												@endif
 												<div class="dropdown-divider"></div>
-												@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pimpinan')
+												@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
 													<h6 class="dropdown-header">Ubah Status</h6>
 													<form action="{{ route('cutiizin.status', $item->id) }}" method="POST" style="display:inline;">
 														@csrf

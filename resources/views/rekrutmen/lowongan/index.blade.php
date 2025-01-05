@@ -42,7 +42,7 @@
 							<th style="width: 5px">#</th>
 							<th>Jabatan</th>
 							<th style="width: 20%">Status</th>
-							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pelamar')
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pelamar' || Auth::user()->jabatan == 'Admin')
 								<th style="width: 30%">Aksi</th>
 							@endif
 						</tr>
@@ -53,9 +53,9 @@
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $item->jabatan->nama_jabatan }}</td>
 								<td>{{ $item->status }}</td>
-								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pelamar')
+								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pelamar' || Auth::user()->jabatan == 'Admin')
 									<td>
-										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
+										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Admin')
 											<a href="{{ route('lowongan.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
 											<form action="{{ route('lowongan.destroy', $item->id) }}" method="POST" style="display:inline;">
 												@csrf
