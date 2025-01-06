@@ -52,8 +52,9 @@
 									<label>Role</label>
 									<select required name="jabatan" class="form-control">
 										<option disabled selected>Pilih Role</option>
-										<option value="Pimpinan">Pimpinan</option>
+										<option value="Manajer">Manajer</option>
 										<option value="Admin">Admin</option>
+										<option value="Karyawan">Karyawan</option>
 									</select>
 								</div>
 							</div>
