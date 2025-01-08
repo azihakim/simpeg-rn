@@ -9,7 +9,7 @@
 	<div class="col-sm-7">
 		<div class="card card-warning">
 			<div class="card-header">
-				<h3 class="card-title">Form Tambah Cuti/Izin</h3>
+				<h3 class="card-title">Form Tambah Reward/Punishment</h3>
 			</div>
 			<!-- /.card-header -->
 			<!-- form start -->
@@ -77,7 +77,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="card-footer">
+				<div class="card-footer mt-4">
 					<button type="submit" class="btn btn-primary">Simpan</button>
 					<button type="button" id="btnCancel" class="btn btn-default float-right">Cancel</button>
 				</div>

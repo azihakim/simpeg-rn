@@ -15,11 +15,6 @@
 			<div class="alert alert-danger" id="error-alert">
 				{{ session('error') }}
 			</div>
-			<script>
-				setTimeout(function() {
-					document.getElementById('error-alert').style.display = 'none';
-				}, 3000);
-			</script>
 		@endif
 		<div class="row justify-content-center">
 			<div class="col-md-6 grid-margin stretch-card">
