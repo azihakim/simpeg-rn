@@ -19,7 +19,19 @@ class AbsensiController extends Controller
 
     function index()
     {
-        $dataAbsen = Absensi::all();
+        $dataAbsen = Absensi::with('user') // Pastikan relasi ke User didefinisikan
+            ->orderBy('id_karyawan')
+            ->orderBy('created_at')
+            ->get();
+
+        if (auth()->user()->jabatan == 'Karyawan') {
+            $dataAbsen = Absensi::with('user')
+                ->where('id_karyawan', auth()->id())
+                ->orderBy('id_karyawan')
+                ->orderBy('created_at')
+                ->get();
+        }
+
         return view('absensi.index', compact('dataAbsen'));
     }
 

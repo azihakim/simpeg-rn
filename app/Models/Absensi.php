@@ -17,8 +17,8 @@ class Absensi extends Model
         'id_karyawan',
     ];
 
-    function user()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'id_karyawan');
+        return $this->belongsTo(User::class, 'id_karyawan', 'id');
     }
 }
