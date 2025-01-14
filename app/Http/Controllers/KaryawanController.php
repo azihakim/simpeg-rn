@@ -100,4 +100,17 @@ class KaryawanController extends Controller
             return redirect()->route('karyawan.index')->with('error', 'Gagal memperbarui data karyawan: ' . $e->getMessage());
         }
     }
+
+    function destroy($id)
+    {
+        try {
+            $karyawan = User::findOrFail($id);
+            $karyawan->delete();
+
+            return redirect()->route('karyawan.index')->with('success', 'Data karyawan berhasil dihapus.');
+        } catch (\Exception $e) {
+            return redirect()->route('karyawan.index')->with('error', 'Gagal menghapus data karyawan: ' . $e->getMessage());
+            // return redirect()->route('karyawan.index')->with('error', 'Gagal menghapus data karyawan karena data masih terhubung dengan data lain.');
+        }
+    }
 }

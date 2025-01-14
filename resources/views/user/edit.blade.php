@@ -50,7 +50,7 @@
 									<label>Role</label>
 									<select required name="jabatan" class="form-control">
 										<option disabled>Pilih Role</option>
-										<option value="Pimpinan" {{ $data->jabatan == 'Manajer' ? 'selected' : '' }}>Manajer</option>
+										<option value="Manajer" {{ $data->jabatan == 'Manajer' ? 'selected' : '' }}>Manajer</option>
 										<option value="Admin" {{ $data->jabatan == 'Admin' ? 'selected' : '' }}>Admin</option>
 										<option value="Karyawan" {{ $data->jabatan == 'Karyawan' ? 'selected' : '' }}>Karyawan</option>
 									</select>
