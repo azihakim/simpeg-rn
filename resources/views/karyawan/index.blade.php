@@ -52,7 +52,7 @@
 								<td>{{ $karyawan->nama }}</td>
 								<td>{{ $karyawan->jabatan->nama_jabatan ?? '-' }}</td>
 								<td>{{ $karyawan->alamat }}</td>
-								<td>{{ $karyawan->no_telp }}</td>
+								<td>{{ $karyawan->telepon }}</td>
 								<td>{{ $karyawan->nik }}</td>
 								@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 									<td>
