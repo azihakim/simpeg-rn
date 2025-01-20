@@ -74,23 +74,24 @@ class KaryawanController extends Controller
     {
         try {
             // Validate input data if necessary
-            $validated = $request->validate([
-                'nama' => 'required|string',
-                'umur' => 'required|integer',
-                'jenis_kelamin' => 'required|string',
-                'telepon' => 'required|string',
-                'nik' => 'unique:users,nik',
-            ]);
+            // $validated = $request->validate([
+            //     'nama' => 'required|string',
+            //     'umur' => 'required|integer',
+            //     'jenis_kelamin' => 'required|string',
+            //     'telepon' => 'required|string',
+            //     'nik' => 'unique:users,nik',
+            // ]);
 
             // Find the employee by ID
             $karyawan = User::findOrFail($id);
 
             // Update the employee data
             $karyawan->nama = $request->nama;
-            $karyawan->umur = $request->umur;
-            $karyawan->jenis_kelamin = $request->jenis_kelamin;
-            $karyawan->telepon = $request->telepon;
+            // $karyawan->umur = $request->umur;
+            // $karyawan->jenis_kelamin = $request->jenis_kelamin;
+            $karyawan->telepon = $request->no_telp;
             $karyawan->nik = $request->nik;
+            $karyawan->alamat = $request->alamat;
 
             // Save the updated data
             $karyawan->save();
