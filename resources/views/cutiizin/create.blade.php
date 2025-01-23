@@ -2,6 +2,11 @@
 @section('act-jabatan', 'active')
 @section('content')
 	<div class="col-sm-7">
+		@if (session('error'))
+			<div class="alert alert-danger" id="error-alert">
+				{{ session('error') }}
+			</div>
+		@endif
 		<div class="card card-warning">
 			<div class="card-header">
 				<h3 class="card-title">Form Tambah Cuti/Izin</h3>

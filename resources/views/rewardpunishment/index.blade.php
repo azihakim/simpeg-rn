@@ -37,7 +37,7 @@
 							<th>Reward</th>
 							<th>Surat Punishment</th>
 							<th>Status</th>
-							@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
+							@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Manajer')
 								<th>Aksi</th>
 							@endif
 						</tr>
@@ -58,7 +58,7 @@
 									@endif
 								</td>
 								<td>{{ $item->status }}</td>
-								@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
+								@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Manajer')
 									<td>
 										@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 											<a href="{{ route('rewardpunishment.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
@@ -70,7 +70,7 @@
 											</form>
 										@endif
 
-										@if (Auth()->user()->jabatan == 'Super Admin')
+										@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
 											<div class="btn-group">
 												<button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"
 													aria-haspopup="true" aria-expanded="false">
