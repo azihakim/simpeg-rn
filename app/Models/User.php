@@ -42,7 +42,7 @@ class User extends Authenticatable
         'alamat',
         'username',
         'password',
-        'divisi',
+        'divisi_id',
     ];
 
     /**

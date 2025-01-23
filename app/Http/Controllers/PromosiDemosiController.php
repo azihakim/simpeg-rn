@@ -149,9 +149,13 @@ class PromosiDemosiController extends Controller
             $promosiDemosi = PromosiDemosi::findOrFail($id);
             $promosiDemosi->status = $request->status;
             if ($request->status == 'Diterima') {
-                $promosiDemosi->karyawan->update([
-                    'divisi_id' => $promosiDemosi->divisi_baru
-                ]);
+
+                $user = User::find($promosiDemosi->id_karyawan);
+                if ($user) {
+                    $user->update([
+                        'divisi_id' => $promosiDemosi->divisi_baru_id
+                    ]);
+                }
             }
             $promosiDemosi->save();
             return redirect()->route('promosidemosi.index')->with('success', 'Data berhasil diubah');

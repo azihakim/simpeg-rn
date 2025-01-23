@@ -68,7 +68,9 @@
 													onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
 											</form>
 										@endif
-										@if (Auth()->user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Pimpinan')
+										@if (Auth()->user()->jabatan == 'Manajer' ||
+												Auth::user()->jabatan == 'Pimpinan' ||
+												Auth::user()->jabatan == 'Super Admin')
 											<div class="btn-group">
 												<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-toggle="dropdown"
 													aria-haspopup="true" aria-expanded="false">
