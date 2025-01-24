@@ -156,6 +156,15 @@ class PromosiDemosiController extends Controller
                         'divisi_id' => $promosiDemosi->divisi_baru_id
                     ]);
                 }
+                if ($promosiDemosi->divisiBaru->nama_jabatan == 'Manajer') {
+                    $user->update([
+                        'jabatan' => 'Manajer'
+                    ]);
+                } elseif ($promosiDemosi->divisiBaru->nama_jabatan == 'Admin') {
+                    $user->update([
+                        'jabatan' => 'Admin'
+                    ]);
+                }
             }
             $promosiDemosi->save();
             return redirect()->route('promosidemosi.index')->with('success', 'Data berhasil diubah');
