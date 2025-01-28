@@ -27,7 +27,8 @@ class CutiIzinController extends Controller
      */
     public function create()
     {
-        return view('cutiizin.create');
+        $kuota = $this->checkQuota(auth()->user()->id);
+        return view('cutiizin.create', compact('kuota'));
     }
 
     /**

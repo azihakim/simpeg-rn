@@ -28,6 +28,13 @@
 							<input required disabled value="{{ Auth::user()->jabatan }}" type="text" class="form-control" name="jabatan">
 						</div>
 					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Sisa Kuota</label>
+						<div class="col-sm-10">
+							<input required disabled value="{{ json_decode($kuota->getContent(), true)['remaining_quota'] }} hari"
+								type="text" class="form-control">
+						</div>
+					</div>
 					<div class="form-group row" style="display: none">
 						<label class="col-sm-2 col-form-label">Jenis Pengajuan</label>
 						<div class="col-sm-10">
