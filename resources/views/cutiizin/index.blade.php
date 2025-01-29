@@ -97,6 +97,8 @@
 														<button class="dropdown-item" type="submit">Terima</button>
 													</form>
 												@endif
+												<!-- Tambahkan tombol untuk mengecek kuota cuti izin -->
+												<button class="dropdown-item check-quota" data-id="{{ $item->user->id }}">Cek Kuota Cuti</button>
 											</div>
 										</div>
 									</td>
@@ -109,4 +111,34 @@
 			<!-- /.card-body -->
 		</div>
 	</div>
+@endsection
+
+@section('script')
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			// Tambahkan event listener untuk tombol cek kuota
+			document.querySelectorAll('.check-quota').forEach(function(button) {
+				button.addEventListener('click', function() {
+					const idKaryawan = this.getAttribute('data-id');
+
+					// Lakukan AJAX request ke route checkQuota
+					fetch(`/check-quota/${idKaryawan}`)
+						.then(response => response.json())
+						.then(data => {
+							// Tampilkan SweetAlert dengan sisa kuota
+							Swal.fire({
+								title: 'Sisa Kuota Cuti',
+								html: `Total cuti yang sudah diambil: ${data.totalRecently} hari<br>Sisa kuota cuti: ${data.remaining_quota} hari`,
+								icon: 'info',
+								confirmButtonText: 'OK'
+							});
+						})
+						.catch(error => {
+							console.error('Error:', error);
+						});
+				});
+			});
+		});
+	</script>
 @endsection
