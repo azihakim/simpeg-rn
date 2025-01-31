@@ -50,7 +50,7 @@
 							<tr>
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $karyawan->nama }}</td>
-								<td>{{ $karyawan->jabatan->nama_jabatan ?? '-' }}</td>
+								<td>{{ $karyawan->divisi->nama_jabatan ?? '-' }}</td>
 								<td>{{ $karyawan->alamat }}</td>
 								<td>{{ $karyawan->telepon }}</td>
 								<td>{{ $karyawan->nik }}</td>
