@@ -124,10 +124,7 @@ class CutiIzinController extends Controller
 
     public function status(Request $request, $id)
     {
-        $kuota = $this->checkQuota(Auth::user()->id);
-        if ($kuota->getData(true)['remaining_quota'] < 0) {
-            return redirect()->route('cutiizin.index')->with('error', 'Kuota tidak mencukupi. Pengajuan cuti dibatalkan.');
-        }
+
 
 
         $data = CutiIzin::find($id);
@@ -140,6 +137,12 @@ class CutiIzinController extends Controller
         $start = strtotime($data->tanggal_mulai);
         $end = strtotime($data->tanggal_selesai);
 
+        $days = ($end - $start) / (60 * 60 * 24) + 1;
+        $kuotaResponse = $this->checkQuota($data->id_karyawan);
+        $kuota = $kuotaResponse->getData(true);
+        if ($kuota['remaining_quota'] < $days) {
+            return redirect()->route('cutiizin.index')->with('error', 'Kuota tidak mencukupi. Pengajuan cuti dibatalkan.');
+        }
         for ($date = $start; $date <= $end; $date = strtotime('+1 day', $date)) {
             $absensi = new Absensi();
             $absensi->id_karyawan = $data->id_karyawan;
