@@ -116,7 +116,7 @@
 									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Karyawan' || Auth::user()->jabatan == 'Manajer')
 										<li>
 											<a href="{{ route('cutiizin.index') }}">
-												<i class="fa fa-calendar-times"></i> Cuti
+												<i class="fa fa-calendar-times"></i> Cuti/Izin
 											</a>
 										</li>
 									@endif
