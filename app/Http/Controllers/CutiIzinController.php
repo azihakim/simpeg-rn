@@ -19,6 +19,7 @@ class CutiIzinController extends Controller
         } else {
             $data = CutiIzin::all();
         }
+
         return view('cutiizin.index', compact('data'));
     }
 
@@ -123,6 +124,12 @@ class CutiIzinController extends Controller
 
     public function status(Request $request, $id)
     {
+        $kuota = $this->checkQuota(Auth::user()->id);
+        if ($kuota->getData(true)['remaining_quota'] < 0) {
+            return redirect()->route('cutiizin.index')->with('error', 'Kuota tidak mencukupi. Pengajuan cuti dibatalkan.');
+        }
+
+
         $data = CutiIzin::find($id);
         $data->status = $request->status;
 

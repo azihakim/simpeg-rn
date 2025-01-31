@@ -117,6 +117,11 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
+			// Panggil fungsi untuk menambahkan event listener
+			addCheckQuotaEventListeners();
+		});
+
+		function addCheckQuotaEventListeners() {
 			// Tambahkan event listener untuk tombol cek kuota
 			document.querySelectorAll('.check-quota').forEach(function(button) {
 				button.addEventListener('click', function() {
@@ -139,6 +144,6 @@
 						});
 				});
 			});
-		});
+		}
 	</script>
 @endsection
